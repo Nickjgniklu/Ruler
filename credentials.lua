@@ -1,0 +1,2 @@
+SSID = "The Barn Boys"
+PASSWORD = "TJBK-212325"
