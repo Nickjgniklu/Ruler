@@ -1,4 +1,4 @@
-http.get("http://nickjgniklu.github.io/carHorn/index.html", nill, function(code, data)
+http.get("https://postman-echo.com/get?".."distance="..math.floor(100.1234),nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
