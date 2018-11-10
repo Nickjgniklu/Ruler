@@ -1,2 +1,4 @@
 gpio.mode(0, gpio.OUTPUT)
-gpio.mode(0, gpio.HIGH)
+--the built in led is inverted
+gpio.write(0, gpio.LOW)
+print("test")
