@@ -47,13 +47,13 @@ tmr.alarm(1,50,tmr.ALARM_SINGLE, function ()
         print("Distance="..distance)
     end
 )
-http.get("https://postman-echo.com/get?".."distance="..math.floor(distance),nil, function(code, data)
+http.get("http://10.0.0.170:8000/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
-      print(code, data)
+      print(code, data) 
     end
   end)
 end
 --schedule to print the distance 10 time per second
-tmr.alarm(2,5000,tmr.ALARM_AUTO,printDistance)
+tmr.alarm(2,250,tmr.ALARM_AUTO,printDistance)

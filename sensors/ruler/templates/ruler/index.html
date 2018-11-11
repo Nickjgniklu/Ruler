@@ -6,12 +6,12 @@
 <title>Ruler</title>
 </head>
 <body onload="startPolling()">
-	<p>welcome {{distance}}<p>
-<canvas id="myCanvas" width="100" height="400" style="border:1px solid #000000;" >
+	<p id ="para">welcome {{distance}}<p>
+<canvas id="myCanvas" width="100" height="300" style="border:1px solid #000000;" >
 </canvas>
 <script type="text/javascript">
 	function startPolling(){
-	  var intervalID = window.setInterval(myCallback, 1000);
+	  var intervalID = window.setInterval(myCallback, 100);
 	}
 
 	function drawLine(distance) {
@@ -23,10 +23,10 @@
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var clear= c.getContext("2d");
-        clear.clearRect(0, 0, 100, 400);
+        clear.clearRect(0, 0, 100, 300);
         ctx.beginPath()
-        ctx.moveTo(50, 400);
-        ctx.lineTo(50, 400-distance);
+        ctx.moveTo(50, 300);
+        ctx.lineTo(50, 300-distance*2);
         ctx.stroke();
     }
     function makeAPIcall() {
@@ -40,6 +40,8 @@
                 xhr.onload = function (){
 
 					drawLine(Number(xhr.response));
+					var c = document.getElementById("para");
+					c.textContent=xhr.response;
                 }
                 xhr.send();
 
