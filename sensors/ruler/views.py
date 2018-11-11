@@ -18,3 +18,5 @@ def fake(request):
        m.save()
 
     return redirect('index')
+def getDistance(request):
+    return HttpResponse(Measurement.objects.all()[0].distance)

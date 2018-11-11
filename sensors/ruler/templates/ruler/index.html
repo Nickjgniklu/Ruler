@@ -7,5 +7,48 @@
 </head>
 <body>
 	<p>welcome {{distance}}<p>
+<canvas id="myCanvas" width="100" height="400" style="border:1px solid #000000;" onclick="startPolling()">
+</canvas>
+<script type="text/javascript">
+	function startPolling(){
+	  var intervalID = window.setInterval(myCallback, 1000);
+	}
+
+	function drawLine(distance) {
+
+
+
+
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var clear= c.getContext("2d");
+        clear.clearRect(0, 0, 100, 400);
+        ctx.beginPath()
+        ctx.moveTo(50, 400);
+        ctx.lineTo(50, 400-distance);
+        ctx.stroke();
+    }
+    function makeAPIcall() {
+
+
+
+                let url ="http://127.0.0.1:8000/ruler/getDistance";
+                let xhr= new XMLHttpRequest();
+                xhr.open('GET',url);
+                xhr.responseType='text';
+                xhr.onload = function (){
+
+					drawLine(Number(xhr.response));
+                }
+                xhr.send();
+
+            }
+    function myCallback() {
+	    makeAPIcall();
+
+}
+
+</script>
 </body>
 </html>
