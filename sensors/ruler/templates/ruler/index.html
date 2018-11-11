@@ -1,9 +1,11 @@
 <DOCTYPE !>
+	{% load static %}
 <html>
 <head>
+	<link rel="stylesheet" href="{% static 'ruler/style.css' %}">
 <title>Ruler</title>
 </head>
 <body>
-	<p>welcome<p>
+	<p>welcome {{distance}}<p>
 </body>
 </html>
