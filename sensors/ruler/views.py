@@ -20,3 +20,13 @@ def fake(request):
     return redirect('index')
 def getDistance(request):
     return HttpResponse(Measurement.objects.all()[0].distance)
+def set(request):
+    if (len(Measurement.objects.all()) < 1):
+        m = Measurement(name="inches", distance="100", date_posted=timezone.now())
+        m.save()
+    else:
+        m = Measurement.objects.all()[0]
+        m.distance = request.GET["distance"]
+        m.save()
+
+    return HttpResponse("I heard You")
