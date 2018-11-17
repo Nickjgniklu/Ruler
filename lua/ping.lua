@@ -39,7 +39,7 @@ function measureDistance()
     gpio.mode(pin,gpio.INT)
     gpio.trig(pin,"both", pulseEvent)--??second dont do anon function takes too long!
 end
-function printDistance()
+function printDistance()-- call measure print result and then send data to server
 measureDistance()
 -- this takes time to update we must wait
 -- print 50 milliseconds later
@@ -47,7 +47,7 @@ tmr.alarm(1,50,tmr.ALARM_SINGLE, function ()
         print("Distance="..distance)
     end
 )
-http.get("http://10.0.0.170:8000/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
+http.get("http://10.0.0.199:8000/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
