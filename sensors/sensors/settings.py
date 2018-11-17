@@ -130,6 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 
-STATIC_URL = 'https://storage.googleapis.com/djangothefirst/static/'
+STATIC_URL = 'https://storage.googleapis.com/ruler/static/'
 
 STATIC_ROOT = 'static/'
