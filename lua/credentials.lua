@@ -1,2 +1,2 @@
-SSID = "The Barn Boys"
-PASSWORD = "TJBK-212325"
+SSID = "Esphome"
+PASSWORD = "2084035338"
