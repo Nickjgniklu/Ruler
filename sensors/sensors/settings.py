@@ -25,7 +25,8 @@ SECRET_KEY = 'ym$v!tz5@xu6acqq7tk^n3#nbwzc&ckmws+tobtp8tu&l59q%_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["10.0.0.170"]
+#it is safe to say all hosts for google app engine 
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -74,13 +75,23 @@ WSGI_APPLICATION = 'sensors.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+#we will use a postgresql data base not mysqlite
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+	'NAME':'ruler',
+	'USER':'nick',
+	'PASSWORD':'password',
+	'PORT':'5432',
     }
 }
 
+#this helps witch for local testing vs server
+DATABASES['default']['HOST'] = '/cloudsql/ruler-222807:us-west1:ruler-instance'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -118,4 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
+STATIC_URL = 'https://storage.googleapis.com/djangothefirst/static/'
+
+STATIC_ROOT = 'static/'
