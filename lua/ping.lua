@@ -20,7 +20,7 @@ function pulseEvent(level,when,count)
         start=when
     elseif level == gpio.LOW then
         fin =when
-        distance=(fin-start)/74/2
+        distance=(fin-start)*0.006944
     end
 
 end
@@ -39,15 +39,12 @@ function measureDistance()
     gpio.mode(pin,gpio.INT)
     gpio.trig(pin,"both", pulseEvent)--??second dont do anon function takes too long!
 end
-function printDistance()-- call measure print result and then send data to server
-measureDistance()
--- this takes time to update we must wait
--- print 50 milliseconds later
-tmr.alarm(1,50,tmr.ALARM_SINGLE, function ()
+function printDistance()
         print("Distance="..distance)
-    end
-)
-http.get("https://sensors-223804.appspot.com/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
+
+end
+function sendData()
+http.get("https://sensors-223804.appspot.com/ruler/set?".."distance="..math.floor(distance).."."..math.floor(distance*10)%10,nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
@@ -55,5 +52,10 @@ http.get("https://sensors-223804.appspot.com/ruler/set?".."distance="..math.floo
     end
   end)
 end
---schedule to print the distance 10 time per second
+--measure the distance every x millisecond
+tmr.alarm(3,1000,tmr.ALARM_AUTO,measureDistance)
+--schedule to print to console the distance x milliseconds
 tmr.alarm(2,1000,tmr.ALARM_AUTO,printDistance)
+--send get request evey x milliseconds
+tmr.alarm(4,5000,tmr.ALARM_AUTO,sendData)
+

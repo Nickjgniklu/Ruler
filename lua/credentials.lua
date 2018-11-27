@@ -1,2 +1,4 @@
 SSID = "Esphome"
 PASSWORD = "2084035338"
+--SSID = "The Barn Boys"
+--PASSWORD = "TJBK-212325"
