@@ -6,8 +6,10 @@ function startup()
         print("init.lua deleted or renamed")
     else
         print("Running")
-        file.close("init.lua")
+        dofile("ping.lua")
+        
         -- the actual application is stored in 'application.lua'
+        file.close("init.lua")
         -- dofile("application.lua")
     end
 end

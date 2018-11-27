@@ -47,7 +47,7 @@ tmr.alarm(1,50,tmr.ALARM_SINGLE, function ()
         print("Distance="..distance)
     end
 )
-http.get("http://10.0.0.199:8000/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
+http.get("https://sensors-223804.appspot.com/ruler/set?".."distance="..math.floor(distance),nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
@@ -56,4 +56,4 @@ http.get("http://10.0.0.199:8000/ruler/set?".."distance="..math.floor(distance),
   end)
 end
 --schedule to print the distance 10 time per second
-tmr.alarm(2,250,tmr.ALARM_AUTO,printDistance)
+tmr.alarm(2,1000,tmr.ALARM_AUTO,printDistance)

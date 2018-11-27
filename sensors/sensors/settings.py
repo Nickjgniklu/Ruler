@@ -81,13 +81,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
 	'NAME':'ruler',
 	'USER':'nick',
-	'PASSWORD':'password',
+	'PASSWORD':'hawaii321',
 	'PORT':'5432',
     }
 }
 
 #this helps witch for local testing vs server
-DATABASES['default']['HOST'] = '/cloudsql/ruler-222807:us-west1:ruler-instance'
+DATABASES['default']['HOST'] = '/cloudsql/sensors-223804:us-west1:sensors-instance1'
 if os.getenv('GAE_INSTANCE'):
     pass
 else:
@@ -130,6 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 #Switch the static to help with local hosting
-STATIC_URL = 'https://storage.googleapis.com/ruler/static/'
+STATIC_URL = 'https://storage.googleapis.com/sensors2/static/'
 #STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
