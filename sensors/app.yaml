@@ -1,0 +1,11 @@
+# [START runtime]
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT sensors.wsgi
+
+beta_settings:
+    cloud_sql_instances: ruler-222807:us-west1:ruler-instance
+
+runtime_config:
+  python_version: 3
+# [END runtime]

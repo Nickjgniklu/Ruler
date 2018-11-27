@@ -1,0 +1,8 @@
+*zip
+*pyc
+*sqlite3
+.idea/
+sensors/cloud_sql_proxy
+sensors/env/
+sensors/static/
+
